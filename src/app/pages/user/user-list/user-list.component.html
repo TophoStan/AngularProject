@@ -1,0 +1,38 @@
+<div class="component list">
+  <div class="row">
+    <div class="col-8"><p>List works!</p></div>
+    <div class="col">
+      <a
+        class="btn btn-primary btn-sm float-right"
+        href="#"
+        role="button"
+        routerLink="new"
+        >New</a
+      >
+    </div>
+  </div>
+
+  <!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Id</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Phonenumber</th>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let user of users"
+        routerLink="{{ user.id }}/edit"
+        class="table-row"
+      >
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.emailAdress }}</td>
+        <td>{{ user.phoneNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
