@@ -1,0 +1,108 @@
+<div class="component edit">
+  <div class="row"></div>
+
+  <div *ngIf="userExists">
+    <h1>{{ staticUser?.firstName }} {{ staticUser?.lastName }}</h1>
+  </div>
+  <div *ngIf="!userExists">
+    <h1>Add user</h1>
+  </div>
+
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-6">
+        <div class="container">
+          <form #userEditForm="ngForm" name="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="firstName">Firstname</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your firstname"
+                [(ngModel)]="user!.firstName"
+                name="firstname"
+                required
+                #firstName="ngModel"
+                minlength="3"
+              />
+            </div>
+            <label for="lastName">Lastname</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your lastname"
+              [(ngModel)]="user!.lastName"
+              name="lastName"
+              #lastName="ngModel"
+              required
+              minlength="3"
+            />
+            <label for="emailAdress">Emailaddress</label>
+            <input
+              type="email"
+              class="form-control"
+              [(ngModel)]="user!.emailAdress"
+              placeholder="Your email adress"
+              name="emailAdress"
+              #emailAdress="ngModel"
+              required
+              pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            />
+            <label for="phoneNumber">Phonenumber</label>
+            <input
+              type="tel"
+              class="form-control"
+              [(ngModel)]="user!.phoneNumber"
+              placeholder="Your phonenumber"
+              name="phoneNumber"
+              #phoneNumber="ngModel"
+              required
+            />
+            <div class="row">
+              <span
+                >Firstname must have atleast 3 characters:
+                <fa-icon
+                  *ngIf="firstName.errors?.['minlength'] || (firstName.value == '')"
+                  [icon]="faTimes"
+                  class="redX"
+                >
+                </fa-icon>
+                <fa-icon
+                  *ngIf="!(firstName.errors?.['minlength']) && !(firstName.value == '')"
+                  [icon]="faCheck"
+                  class="greenCheck"
+                >
+                </fa-icon>
+              </span>
+            </div>
+            <div class="row">
+              <!-- Bij Save roepen we de save() functie aan, en navigeren
+                              terug naar details binnen die functie -->
+              <div class="col">
+                <button
+                  role="button"
+                  type="submit"
+                  class="btn btn-primary mx-2"
+                  [disabled]="!userEditForm.valid"
+                >
+                  Submit
+                </button>
+              </div>
+              <div class="col">
+                <button
+                  class="btn btn-outline-secondary float-right"
+                  href="#"
+                  role="button"
+                  routerLink="/user"
+                >
+                  Cancel
+                </button>
+              </div>
+              <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

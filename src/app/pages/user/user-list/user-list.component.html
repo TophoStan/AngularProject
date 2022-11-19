@@ -1,38 +1,58 @@
 <div class="component list">
   <div class="row">
-    <div class="col-8"><p>List works!</p></div>
     <div class="col">
       <a
-        class="btn btn-primary btn-sm float-right"
+        class="btn btn-success d-inline float-end"
         href="#"
         role="button"
         routerLink="new"
         >New</a
       >
     </div>
+    <table class="table table-striped table-hover">
+      <thead>
+        <th>Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+        <th>Student</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="table-row">
+          <td>{{ user.id }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.emailAdress }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td>
+            <span *ngIf="user.isStudent">
+              <fa-icon [icon]="faCheck" style="color: greenyellow"></fa-icon>
+            </span>
+          </td>
+          <!-- <td>
+            <button class="btn btn-primary">
+              <fa-icon [icon]="faScroll"></fa-icon>
+            </button>
+          </td> -->
+          <td>
+            <button class="btn btn-warning" routerLink="{{ user.id }}/edit">
+              <fa-icon [icon]="faPencil"></fa-icon>
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              type="button"
+              (click)="deleteUser(user.id)"
+            >
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <!-- https://getbootstrap.com/docs/5.1/content/tables/ -->
-  <table class="table table-striped table-hover">
-    <thead>
-      <th>Id</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Email</th>
-      <th>Phonenumber</th>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let user of users"
-        routerLink="{{ user.id }}/edit"
-        class="table-row"
-      >
-        <td>{{ user.id }}</td>
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
-        <td>{{ user.emailAdress }}</td>
-        <td>{{ user.phoneNumber }}</td>
-      </tr>
-    </tbody>
-  </table>
 </div>

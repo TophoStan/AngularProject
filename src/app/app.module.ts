@@ -8,10 +8,9 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { UserPageComponent } from './pages/user/user-page.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { UserEditComponent } from './pages/user/user-edit/user-edit.component';
-import { UserAddComponent } from './pages/user/user-add/user-add.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,10 +19,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserPageComponent,
     NavbarComponent,
     FooterComponent,
-    UserEditComponent,
-    UserAddComponent,
+    UserAddEditComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

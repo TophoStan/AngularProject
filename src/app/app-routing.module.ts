@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { UserAddComponent } from './pages/user/user-add/user-add.component';
-import { UserEditComponent } from './pages/user/user-edit/user-edit.component';
+import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
 import { UserPageComponent } from './pages/user/user-page.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  {
-    path: 'user',
-    component: UserPageComponent,
-    children: [
-      { path: ':id/edit', pathMatch: 'full', component: UserEditComponent },
-      { path: 'new', pathMatch: 'full', component: UserAddComponent },
-    ],
-  },
+  { path: 'user', component: UserPageComponent },
+  { path: 'user/new', pathMatch: 'full', component: UserAddEditComponent },
+  { path: 'user/:id/edit', pathMatch: 'full', component: UserAddEditComponent },
 ];
 
 @NgModule({
