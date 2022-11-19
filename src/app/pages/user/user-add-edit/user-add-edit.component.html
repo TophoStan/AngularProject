@@ -58,6 +58,15 @@
               #phoneNumber="ngModel"
               required
             />
+            <label for="isStudent">Student?</label>
+            <input
+              type="checkbox"
+              class="form-checkbox"
+              [(ngModel)]="user!.isStudent"
+              name="isStudent"
+              #isStudent="ngModel"
+            />
+
             <div class="row">
               <span
                 >Firstname must have atleast 3 characters:

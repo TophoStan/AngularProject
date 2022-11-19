@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.c
     NavbarComponent,
     FooterComponent,
     UserAddEditComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,
