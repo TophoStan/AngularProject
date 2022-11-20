@@ -1,107 +1,126 @@
-<div class="row">
-  <div class="col-sm-6 col-md-8 col-lg-9">
-    <h3 id="aboutTitle">Over deze applicatie</h3>
-    <p>
-      Deze applicatie is gemaakt in het kader van het vak 'Clientside web
-      frameworks' van Avans Hogeschool Breda.
-    </p>
-    <h1>BooksToRead</h1>
-    <p>
-      Bij dit project is het doel om een Angular frontend applicatie te
-      realiseren in combinatie met een NoSQL database. Bij mij project zijn er 7
-      eintiteiten: User, Leeslijst, Boek, Review, Auteur, Uitgever en Adres.
-    </p>
-  </div>
-  <div class="col-sm-6 col-md-4 col-lg-3">
-    <div class="card">
-      <div class="d-flex justify-content-center align-items-center px-3 py-3">
-        <!-- Je mag een foto van jezelf toevoegen, maar dat is niet verplicht. -->
-        <img
-          src="/assets/images/coolsteFoto.jpg"
-          class="card-img-top rounded-circle border profile-pic px-4 py-4"
-          alt="..."
-        />
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">Stan Tophoven</h5>
-        <p class="card-text">Studentnummer: 2188721</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-8 col-lg-9">
+      <h3 id="aboutTitle">Over deze applicatie</h3>
+      <p>
+        Deze applicatie is gemaakt in het kader van het vak 'Clientside web
+        frameworks' van Avans Hogeschool Breda.
+      </p>
+      <h1>BooksToRead</h1>
+      <p>
+        Bij dit project is het doel om een Angular frontend applicatie te
+        realiseren in combinatie met een NoSQL database. Bij mijn project horen
+        7 eintiteiten: User, Leeslijst, Boek, Review, Auteur, Uitgever en Adres.
+        Het doel van de applicatie is dat een gebruiker kan aangeven of hij of
+        zij een boek heeft gelezen, deze in een lijst kan zetten en eventueel
+        een review kan maken over het gelezen boek.
+      </p>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card">
+        <div class="d-flex justify-content-center align-items-center px-3 py-3">
+          <!-- Je mag een foto van jezelf toevoegen, maar dat is niet verplicht. -->
+          <img
+            src="/assets/images/coolsteFoto.jpg"
+            class="card-img-top rounded-circle border profile-pic px-4 py-4"
+            alt="..."
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Stan Tophoven</h5>
+          <p class="card-text">Studentnummer: 2188721</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<h3>Entiteiten</h3>
-<p>
-  Hier geef je een toelichting op je entiteiten. Voeg ook een afbeelding van je
-  model toe zoals dat bij NoSql gevraagd wordt.
-</p>
+  <h3>Entiteiten</h3>
+  <p>
+    Hier geef je een toelichting op je entiteiten. Voeg ook een afbeelding van
+    je model toe zoals dat bij NoSql gevraagd wordt.
+  </p>
 
-<img src="assets/images/ERD2.drawio.png" class="px-5 py-5" alt="..." />
+  <img src="assets/images/ERD2.drawio.png" class="px-5 py-5" alt="..." />
 
-<div class="row">
-  <div class="col-sm-12 col-md-4">
-    <p>User</p>
-    <ul>
-      <li>id: number</li>
-      <li>naam: string</li>
-      <li>emailAdres: string</li>
-      <li>phoneNumber: string</li>
-      <li>isStudent: boolean</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>LeesList</p>
-    <ul>
-      <li>id: number</li>
-      <li>naam: string</li>
-      <li>description : string</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Review</p>
-    <ul>
-      <li>id: number</li>
-      <li>title: string</li>
-      <li>description: string</li>
-      <li>rating: number</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Boek</p>
-    <ul>
-      <li>id: number</li>
-      <li>title: string</li>
-      <li>summary: string</li>
-      <li>rating: number</li>
-      <li>price: number</li>
-      <li>hasBeenRead: boolean</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Auteur</p>
-    <ul>
-      <li>id: number</li>
-      <li>firstName: string</li>
-      <li>lastName: string</li>
-      <li>birthDate: date</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Publisher</p>
-    <ul>
-      <li>id: number</li>
-      <li>name: string</li>
-      <li>founded: date</li>
-      <li>founder: string</li>
-    </ul>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <p>Adres</p>
-    <ul>
-      <li>id: number</li>
-      <li>postalCode: string</li>
-      <li>street: string</li>
-      <li>houseNumber: number</li>
-    </ul>
+  <div class="row row-cols-3 gy-3">
+    <div class="col">
+      <div>
+        <p>User</p>
+        <ul>
+          <li>id: number</li>
+          <li>naam: string</li>
+          <li>emailAdres: string</li>
+          <li>phoneNumber: string</li>
+          <li>isStudent: boolean</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>LeesList</p>
+        <ul>
+          <li>id: number</li>
+          <li>naam: string</li>
+          <li>description : string</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>Review</p>
+        <ul>
+          <li>id: number</li>
+          <li>title: string</li>
+          <li>description: string</li>
+          <li>rating: number</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>Boek</p>
+        <ul>
+          <li>id: number</li>
+          <li>title: string</li>
+          <li>summary: string</li>
+          <li>rating: number</li>
+          <li>price: number</li>
+          <li>hasBeenRead: boolean</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>Auteur</p>
+        <ul>
+          <li>id: number</li>
+          <li>firstName: string</li>
+          <li>lastName: string</li>
+          <li>birthDate: date</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>Publisher</p>
+        <ul>
+          <li>id: number</li>
+          <li>name: string</li>
+          <li>founded: date</li>
+          <li>founder: string</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p>Adres</p>
+        <ul>
+          <li>id: number</li>
+          <li>postalCode: string</li>
+          <li>street: string</li>
+          <li>houseNumber: number</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
