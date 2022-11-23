@@ -1,0 +1,100 @@
+{
+  "name": "SchoolProject",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/SchoolProject/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "options": {
+        "outputPath": "dist/apps/SchoolProject",
+        "index": "apps/SchoolProject/src/index.html",
+        "main": "apps/SchoolProject/src/main.ts",
+        "polyfills": "apps/SchoolProject/src/polyfills.ts",
+        "tsConfig": "apps/SchoolProject/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/SchoolProject/src/favicon.ico",
+          "apps/SchoolProject/src/assets"
+        ],
+        "styles": [
+          "apps/SchoolProject/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/SchoolProject/src/environments/environment.ts",
+              "with": "apps/SchoolProject/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "SchoolProject:build:production"
+        },
+        "development": {
+          "browserTarget": "SchoolProject:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "SchoolProject:build"
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/SchoolProject/src/test.ts",
+        "polyfills": "apps/SchoolProject/src/polyfills.ts",
+        "tsConfig": "apps/SchoolProject/tsconfig.spec.json",
+        "karmaConfig": "apps/SchoolProject/karma.conf.js",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/SchoolProject/src/favicon.ico",
+          "apps/SchoolProject/src/assets"
+        ],
+        "styles": [
+          "apps/SchoolProject/src/styles.scss"
+        ],
+        "scripts": []
+      }
+    }
+  }
+}
