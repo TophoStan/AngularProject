@@ -4,6 +4,10 @@
         border: 2px black solid;
         border-radius: 5px;
         padding: 0px;
+        ul li {
+            list-style: none;
+            text-align: left;
+        }
         
         p {
             border-radius: 3px;

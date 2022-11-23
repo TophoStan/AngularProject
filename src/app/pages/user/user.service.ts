@@ -31,6 +31,22 @@ export class UserService {
       phoneNumber: '0612345678',
       isStudent: false,
     },
+    {
+      id: 3,
+      firstName: 'Rogier',
+      lastName: ' van de Gaag',
+      emailAdress: 'Gaag@mail.com',
+      phoneNumber: '061273765',
+      isStudent: true,
+    },
+    {
+      id: 4,
+      firstName: 'Luuk',
+      lastName: 'Vogel',
+      emailAdress: 'LuukVogel@mail.com',
+      phoneNumber: '2398475',
+      isStudent: false,
+    },
   ];
 
   getUsersAsObservable(): Observable<IUser[]> {
@@ -41,7 +57,12 @@ export class UserService {
   }
 
   getUserById(id: number): IUser {
-    return this.users.filter((c) => c.id == id)[0];
+    const user = this.users.filter((c) => c.id == id)[0];
+    if (user !== undefined) {
+      return user;
+    } else {
+      throw new Error('User list is empty');
+    }
   }
 
   getUsers(): IUser[] {
@@ -63,5 +84,8 @@ export class UserService {
     let user = this.users.find((obj) => obj.id == id);
     let index = this.users.indexOf(user!);
     this.users.splice(index, 1);
+  }
+  clearUsers() {
+    this.users.splice(0);
   }
 }
