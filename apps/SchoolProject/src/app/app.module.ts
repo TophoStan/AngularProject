@@ -12,6 +12,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { BookPageComponent } from './pages/book/book-page.component';
+import { BookListComponent } from './pages/book/book-list/book-list.component';
+import { BookAddEditComponent } from './pages/book/book-add-edit/book-add-edit.component';
+import { BookCardComponent } from './pages/book/book-list/book-card/book-card.component';
+import { BookDetailComponent } from './pages/book/book-detail/book-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +27,11 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     FooterComponent,
     UserAddEditComponent,
     AboutPageComponent,
+    BookPageComponent,
+    BookListComponent,
+    BookAddEditComponent,
+    BookCardComponent,
+    BookDetailComponent,
   ],
   imports: [
     BrowserModule,

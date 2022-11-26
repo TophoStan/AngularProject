@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <h2 *ngIf="!bookExists">Add a new book to your reading list</h2>
+    <h2 *ngIf="bookExists">{{ staticBook!.title }}</h2>
+  </div>
+  <div class="row">
+    <form #bookEditForm="ngForm" name="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Book title"
+          [(ngModel)]="book!.title"
+          name="title"
+          required
+          #firstName="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="summary">Summary</label>
+        <textarea
+          type="text"
+          class="form-control"
+          placeholder="Book summary"
+          [(ngModel)]="book!.summary"
+          name="summary"
+          required
+          #firstName="ngModel"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Book rating"
+          [(ngModel)]="book!.rating"
+          name="rating"
+          required
+          #firstName="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Book price"
+          [(ngModel)]="book!.price"
+          name="price"
+          required
+          #firstName="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="hasBeenRead">Have you read the book?</label>
+        <input
+          type="checkbox"
+          class="form-checkbox"
+          [(ngModel)]="book!.hasBeenRead"
+          name="hasBeenRead"
+          required
+          #firstName="ngModel"
+        />
+      </div>
+      <div class="row">
+        <div>
+          <button *ngIf="bookExists" type="submit" class="btn btn-danger">
+            Edit
+          </button>
+          <button *ngIf="!bookExists" type="submit" class="btn btn-success">
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

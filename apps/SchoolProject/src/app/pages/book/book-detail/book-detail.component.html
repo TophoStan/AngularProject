@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2 m-auto">
+      <img src="{{ book!.imageUrl }}" alt="" class="w-100" />
+    </div>
+    <div class="col">
+      <div class="row m-5">
+        <h2>{{ book!.title }}</h2>
+        <h3 class="text-center">Summary</h3>
+        <div class="row summary">
+          <p class="fst-italic">{{ book!.summary }}</p>
+        </div>
+        <div class="row">
+          <p>Price: {{ book!.price | currency : 'EUR' }}</p>
+        </div>
+        <div class="row">
+          <p>Rating: {{ book!.rating }}/10</p>
+        </div>
+        <div class="row">
+          <p>Have you read this book?</p>
+          <p>
+            <fa-icon
+              [icon]="faCheck"
+              *ngIf="book!.hasBeenRead"
+              style="color: greenyellow"
+            ></fa-icon>
+            <fa-icon
+              [icon]="faX"
+              *ngIf="!book!.hasBeenRead"
+              style="color: red"
+            ></fa-icon>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
