@@ -1,0 +1,41 @@
+<div class="row m-0 justify-content-center">
+  <img
+    class="p-0 card-img"
+    src="{{
+      book!.imageUrl
+        ? book!.imageUrl
+        : 'https://deconova.eu/wp-content/uploads/2016/02/default-placeholder.png'
+    }}"
+    alt=""
+  />
+</div>
+<div class="card-body">
+  <h5 class="card-title">{{ book!.title }}</h5>
+  <p class="summary">{{ book!.summary.slice(0, 180) }}...</p>
+  <p>{{ book!.rating }}</p>
+  <p>{{ book!.price | currency : 'EUR' }}</p>
+  <p>
+    Read
+    <fa-icon
+      [icon]="faCheck"
+      *ngIf="book!.hasBeenRead"
+      style="color: greenyellow"
+    ></fa-icon>
+    <fa-icon
+      [icon]="faX"
+      *ngIf="!book!.hasBeenRead"
+      style="color: red"
+    ></fa-icon>
+  </p>
+</div>
+<div class="row m-0">
+  <button class="btn btn-sm btn-primary col" routerLink="{{ book!.id }}/detail">
+    <fa-icon [icon]="faScroll"></fa-icon> Details
+  </button>
+  <button class="btn btn-sm btn-warning col-2" routerLink="{{ book!.id }}/edit">
+    <fa-icon [icon]="faPencil"></fa-icon>
+  </button>
+  <button class="btn btn-sm btn-danger col-2" (click)="deleteBook()">
+    <fa-icon [icon]="faTrash"></fa-icon>
+  </button>
+</div>

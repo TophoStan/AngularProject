@@ -1,0 +1,21 @@
+<p>book-list works!</p>
+<div class="row m-3">
+  <div class="col">
+    <a
+      class="btn btn-success d-inline float-end"
+      href="#"
+      role="button"
+      routerLink="new"
+      >New</a
+    >
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-lg-3 row-cols-md-2 gy-3">
+    <div class="col" *ngFor="let book of books">
+      <div class="bookItem card">
+        <app-book-card [book]="book"></app-book-card>
+      </div>
+    </div>
+  </div>
+</div>

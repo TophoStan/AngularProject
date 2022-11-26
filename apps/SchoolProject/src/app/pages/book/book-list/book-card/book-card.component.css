@@ -1,0 +1,10 @@
+img{
+    height: 400px;
+    width: 300px;
+    object-fit:fill;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.card-body{
+    height: 300px;
+}
