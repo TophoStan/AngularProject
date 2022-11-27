@@ -14,7 +14,7 @@
           [(ngModel)]="book!.title"
           name="title"
           required
-          #firstName="ngModel"
+          #title="ngModel"
         />
       </div>
       <div class="form-group">
@@ -26,7 +26,7 @@
           [(ngModel)]="book!.summary"
           name="summary"
           required
-          #firstName="ngModel"
+          #summary="ngModel"
         ></textarea>
       </div>
       <div class="form-group">
@@ -38,7 +38,7 @@
           [(ngModel)]="book!.rating"
           name="rating"
           required
-          #firstName="ngModel"
+          #rating="ngModel"
         />
       </div>
       <div class="form-group">
@@ -50,7 +50,7 @@
           [(ngModel)]="book!.price"
           name="price"
           required
-          #firstName="ngModel"
+          #price="ngModel"
         />
       </div>
       <div class="form-group">
@@ -61,12 +61,28 @@
           [(ngModel)]="book!.hasBeenRead"
           name="hasBeenRead"
           required
-          #firstName="ngModel"
+          #hasBeenRead="ngModel"
         />
+      </div>
+      <div class="row row-cols-2">
+        <div class="form-group col">
+          <label for="imageUrl">Image URL</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="book!.imageUrl"
+            name="imageUrl"
+            required
+            #imageUrl="ngModel"
+          />
+        </div>
+        <div class="col">
+          <img src="{{ book!.imageUrl }}" alt="" />
+        </div>
       </div>
       <div class="row">
         <div>
-          <button *ngIf="bookExists" type="submit" class="btn btn-danger">
+          <button *ngIf="bookExists" type="submit" class="btn btn-primary">
             Edit
           </button>
           <button *ngIf="!bookExists" type="submit" class="btn btn-success">
