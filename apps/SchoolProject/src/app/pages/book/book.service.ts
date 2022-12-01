@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IUser } from '../user/user.model';
-import { IBook } from './book.model';
+import { IBook } from '@schoolproject/data';
 
 @Injectable({
   providedIn: 'root',

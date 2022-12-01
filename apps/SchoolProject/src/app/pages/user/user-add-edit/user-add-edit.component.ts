@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { IUser } from '../user.model';
+import { IUser } from '@schoolproject/data';
 import { UserService } from '../user.service';
 
 @Component({

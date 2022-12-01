@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IUser } from './user.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IUser } from '@schoolproject/data';
 
 @Injectable({
   providedIn: 'root',
@@ -49,11 +50,21 @@ export class UserService {
     },
   ];
 
+  constructor(private httpClient: HttpClient) {}
+
   getUsersAsObservable(): Observable<IUser[]> {
     console.log('getUsersAsObservable aangeroepen');
     // 'of' is een rxjs operator die een Observable
     // maakt van de gegeven data.
-    return of(this.users);
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    });
+    return this.httpClient.get<IUser[]>(
+      'http://localhost:3333/api/data-api/user',
+      {
+        headers: headers,
+      }
+    );
   }
 
   getUserById(id: number): IUser {

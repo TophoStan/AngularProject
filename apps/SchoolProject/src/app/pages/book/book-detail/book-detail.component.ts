@@ -5,7 +5,7 @@ import {
   Route,
   Router,
 } from '@angular/router';
-import { IBook } from '../book.model';
+import { IBook } from '@schoolproject/data';
 import { BookService } from '../book.service';
 import {
   faCheck,

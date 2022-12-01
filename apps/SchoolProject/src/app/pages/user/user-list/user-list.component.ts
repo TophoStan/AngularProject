@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../user.model';
+import { IUser } from '@schoolproject/data';
 import { UserService } from '../user.service';
 import {
   faCheck,
@@ -10,6 +10,7 @@ import {
   faScroll,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
+import { switchMap } from 'rxjs';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -26,7 +27,13 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.userService
+      .getUsersAsObservable()
+      .pipe()
+      .subscribe((usersData: IUser[]) => {
+        this.users = usersData;
+        console.log(usersData);
+      });
   }
   deleteUser(id: number): void {
     console.log('delte');
