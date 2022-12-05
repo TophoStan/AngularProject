@@ -17,6 +17,9 @@ import { BookListComponent } from './pages/book/book-list/book-list.component';
 import { BookAddEditComponent } from './pages/book/book-add-edit/book-add-edit.component';
 import { BookCardComponent } from './pages/book/book-list/book-card/book-card.component';
 import { BookDetailComponent } from './pages/book/book-detail/book-detail.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { JwtModule } from '@nestjs/jwt';
 // import { IUser } from '@schoolproject/data';
 
 @NgModule({
@@ -34,6 +37,8 @@ import { BookDetailComponent } from './pages/book/book-detail/book-detail.compon
     BookAddEditComponent,
     BookCardComponent,
     BookDetailComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,15 @@
   "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],
+  "compilerOptions": {
+    "esModuleInterop": true,    
+    "paths": {
+      "stream": [ "./node_modules/stream-browserify"],
+      "crypto":["./node_modules/crypto-browserify"],
+      "util":["./node_modules/util"],
+      "@schoolproject/data": ["libs/data/src/index.ts"]      
+    }
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"

@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "strictPropertyInitialization": false,
+    "exactOptionalPropertyTypes": false,
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
     "types": ["node"],

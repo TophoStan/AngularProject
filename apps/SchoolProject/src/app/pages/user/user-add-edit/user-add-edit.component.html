@@ -18,9 +18,9 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Your firstname"
+                placeholder="Your firstName"
                 [(ngModel)]="user!.firstName"
-                name="firstname"
+                name="firstName"
                 required
                 #firstName="ngModel"
                 minlength="3"
@@ -30,18 +30,18 @@
             <input
               type="text"
               class="form-control"
-              placeholder="Your lastname"
+              placeholder="Your lastName"
               [(ngModel)]="user!.lastName"
               name="lastName"
               #lastName="ngModel"
               required
               minlength="3"
             />
-            <label for="emailAdress">Emailaddress</label>
+            <label for="emailAdress" class="form-label">Emailaddress</label>
             <input
               type="email"
               class="form-control"
-              [(ngModel)]="user!.emailAdress"
+              [(ngModel)]="user!.emailAddress"
               placeholder="Your email adress"
               name="emailAdress"
               #emailAdress="ngModel"
@@ -53,7 +53,7 @@
               type="tel"
               class="form-control"
               [(ngModel)]="user!.phoneNumber"
-              placeholder="Your phonenumber"
+              placeholder="Your phoneNumber"
               name="phoneNumber"
               #phoneNumber="ngModel"
               required

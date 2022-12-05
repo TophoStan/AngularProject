@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-6">
+        <h2>Log in</h2>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <div class="mb-3">
+            <label for="emailAddress">Emailaddress</label>
+            <input
+              type="emailAddress"
+              class="form-control"
+              id="emailAddress"
+              name="emailAddress"
+              #emailAddress="ngModel"
+              [(ngModel)]="user!.emailAddress"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pwd">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="pwd"
+              name="password"
+              #pwd="ngModel"
+              [(ngModel)]="user!.password"
+            />
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Log in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

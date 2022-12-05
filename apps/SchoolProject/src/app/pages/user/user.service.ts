@@ -12,7 +12,7 @@ export class UserService {
       id: 0,
       firstName: 'Stijn',
       lastName: 'Spanjers',
-      emailAdress: 'stijn@icloud.com',
+      emailAddress: 'stijn@icloud.com',
       phoneNumber: '0612345678',
       isStudent: true,
     },
@@ -20,7 +20,7 @@ export class UserService {
       id: 1,
       firstName: 'Stan',
       lastName: 'Tophoven',
-      emailAdress: 'saj.tophoven@mail.com',
+      emailAddress: 'saj.tophoven@mail.com',
       phoneNumber: '0612345678',
       isStudent: true,
     },
@@ -28,7 +28,7 @@ export class UserService {
       id: 2,
       firstName: 'Thomas',
       lastName: 'Quartel',
-      emailAdress: 'Thomaaas@quartel.com',
+      emailAddress: 'Thomaaas@quartel.com',
       phoneNumber: '0612345678',
       isStudent: false,
     },
@@ -36,7 +36,7 @@ export class UserService {
       id: 3,
       firstName: 'Rogier',
       lastName: ' van de Gaag',
-      emailAdress: 'Gaag@mail.com',
+      emailAddress: 'Gaag@mail.com',
       phoneNumber: '061273765',
       isStudent: true,
     },
@@ -44,7 +44,7 @@ export class UserService {
       id: 4,
       firstName: 'Luuk',
       lastName: 'Vogel',
-      emailAdress: 'LuukVogel@mail.com',
+      emailAddress: 'LuukVogel@mail.com',
       phoneNumber: '2398475',
       isStudent: false,
     },
@@ -56,11 +56,41 @@ export class UserService {
     console.log('getUsersAsObservable aangeroepen');
     // 'of' is een rxjs operator die een Observable
     // maakt van de gegeven data.
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
     });
     return this.httpClient.get<IUser[]>(
       'http://localhost:3333/api/data-api/user',
+      {
+        headers: headers,
+      }
+    );
+  }
+  getUserByIdAsObservable(id: string): Observable<IUser> {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.get<IUser>(
+      `http://localhost:3333/api/data-api/user/${id}`,
+      {
+        headers: headers,
+      }
+    );
+  }
+  getSelf(): Observable<IUser> {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.get<IUser>(
+      `http://localhost:3333/api/data-api/user/self`,
       {
         headers: headers,
       }
@@ -85,11 +115,19 @@ export class UserService {
     this.users.push(user);
   }
   updateUser(updatedUser: IUser) {
-    console.log(updatedUser);
-
-    let user = this.users.find((obj) => obj.id == updatedUser.id);
-    let index = this.users.indexOf(user!);
-    this.users[index] = updatedUser;
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    console.log('Updating user.....');
+    return this.httpClient.put<IUser>(
+      `http://localhost:3333/api/data-api/user/${updatedUser.id}`,
+      updatedUser,
+      {
+        headers: headers,
+      }
+    );
   }
   deleteUser(id: number) {
     let user = this.users.find((obj) => obj.id == id);

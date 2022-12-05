@@ -28,11 +28,23 @@ export class UserService {
       )
       .exec();
   }
-  async getOne(userId: string): Promise<UserModel[]> {
+  async getOne(userId: string): Promise<UserModel> {
     const pipelineUser = [{ $match: { id: Number(userId) } }];
     const users = await this.userModel.aggregate(pipelineUser);
-    console.log(users);
+    return users[0];
+  }
+  async getOneByMongo(userMongoId: string): Promise<UserModel> {
+    const pipelineUser = [{ $match: { id: userMongoId } }];
+    const users = await this.userModel.aggregate(pipelineUser);
 
-    return users;
+    return users[0];
+  }
+  async updateOne(updatedUser: UserModel): Promise<UserModel> {
+    const pipelineUser = [{ $match: { id: updatedUser.id } }];
+    let user = await this.userModel.aggregate(pipelineUser)[0];
+    user = updatedUser;
+    delete user.id;
+    await this.userModel.updateOne(user);
+    return user;
   }
 }

@@ -10,7 +10,14 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-add-edit.component.scss'],
 })
 export class UserAddEditComponent implements OnInit {
-  user: IUser | undefined;
+  user: IUser | undefined = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    emailAddress: '',
+    isStudent: false,
+  };
   staticUser: IUser | undefined;
   userId: string | null = null;
   userExists: boolean = false;
@@ -19,30 +26,45 @@ export class UserAddEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.userId = params.get('id');
       //Edit
+      console.log(`UserId: ${this.userId}`);
+
       if (this.userId) {
         this.userExists = true;
-        this.staticUser = this.userService.getUserById(Number(this.userId));
-        this.user = {
-          ...JSON.parse(
-            JSON.stringify(this.userService.getUserById(Number(this.userId)))
-          ),
-        };
+
+        // this.user = {
+        //   ...JSON.parse(
+        //     JSON.stringify(this.userService.getUserById(Number(this.userId)))
+        //   ),
+        // };
+        this.userService
+          .getUserByIdAsObservable(this.userId)
+          .subscribe((user: IUser) => {
+            console.log(user);
+            this.staticUser = {
+              ...JSON.parse(JSON.stringify(user)),
+            };
+            this.user = {
+              ...JSON.parse(JSON.stringify(user)),
+            };
+          });
         //Create
       } else {
+        console.log('No id was found');
+
         this.user = {
           id: 0,
           firstName: '',
           lastName: '',
           phoneNumber: '',
-          emailAdress: '',
+          emailAddress: '',
           isStudent: false,
         };
       }
@@ -52,7 +74,9 @@ export class UserAddEditComponent implements OnInit {
     console.log('Submit');
     if (this.userExists) {
       console.log('Update user');
-      this.userService.updateUser(this.user!);
+      this.userService.updateUser(this.user!).subscribe((user) => {
+        console.log('Succesfully updated user');
+      });
       this.router.navigate(['user']);
     } else {
       console.log('Add user');

@@ -8,9 +8,16 @@ export type UserDocument = HydratedDocument<User>;
 export class User {
   @Prop({ default: uuid, index: true })
   id: string;
-
-  @Prop({ default: 'test', required: true })
-  lol: string;
+  @Prop({ default: 'John', required: true, unique: false })
+  firstName: string;
+  @Prop({ default: 'Doe', required: true })
+  lastName: string;
+  @Prop({ default: 'JohnDoe@mail.com', required: true })
+  emailAddress: string;
+  @Prop({ default: '12345678', required: false })
+  phoneNumber: string;
+  @Prop({ default: false, required: false })
+  isStudent: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

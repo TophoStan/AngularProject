@@ -2,7 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": []
+    "types": [],
+    "paths": {
+      "stream": [ "./node_modules/stream-browserify"],
+      "crypto":["./node_modules/crypto-browserify"],
+      "util":["./node_modules/util"],
+      "@schoolproject/data": ["libs/data/src/index.ts"]      
+    }
   },
   "files": [
     "src/main.ts",
