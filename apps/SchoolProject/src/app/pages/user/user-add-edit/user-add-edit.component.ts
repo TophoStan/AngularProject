@@ -17,6 +17,7 @@ export class UserAddEditComponent implements OnInit {
     phoneNumber: '',
     emailAddress: '',
     isStudent: false,
+    roles: ['user'],
   };
   staticUser: IUser | undefined;
   userId: string | null = null;
@@ -66,6 +67,7 @@ export class UserAddEditComponent implements OnInit {
           phoneNumber: '',
           emailAddress: '',
           isStudent: false,
+          roles: ['user'],
         };
       }
     });

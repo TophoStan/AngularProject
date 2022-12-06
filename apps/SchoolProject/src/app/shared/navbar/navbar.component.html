@@ -6,6 +6,7 @@
       <div class="navbar-nav">
         <a class="nav-link" routerLink="">Home</a>
         <a class="nav-link" routerLink="user">User</a>
+        <a class="nav-link" routerLink="booklist">Booklist</a>
         <a class="nav-link" routerLink="book">Book</a>
         <a class="nav-link" routerLink="about">About</a>
       </div>
@@ -22,11 +23,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="d-inline float-end">
-      <button class="btn btn-outline-secondary float-end" routerLink="register">
+      <button
+        *ngIf="!userLoggedIn"
+        class="btn btn-outline-secondary float-end"
+        routerLink="register"
+      >
         Register
       </button>
-      <button class="btn btn-primary float-end" routerLink="login">
+      <button
+        *ngIf="!userLoggedIn"
+        class="btn btn-primary float-end"
+        routerLink="login"
+      >
         Login
+      </button>
+      <button
+        *ngIf="userLoggedIn"
+        class="btn btn-primary float-end"
+        (click)="logout()"
+      >
+        Log out
       </button>
     </div>
   </div>

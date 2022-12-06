@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "noImplicitAny": false,
     "emitDecoratorMetadata": true,
@@ -21,7 +21,7 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
-      "@schoolproject/data": ["libs/data/src/index.ts"]      
+      "@schoolproject/data": ["libs/data/src/index.ts"]
     },
     "rootDir": "."
   },

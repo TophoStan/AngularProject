@@ -1,4 +1,5 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
+import { LoggerMiddleware } from '../logger.middleware';
 import { RouterModule } from '@nestjs/core';
 
 import { MongooseModule } from '@nestjs/mongoose';
@@ -32,5 +33,8 @@ require('dotenv');
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(TokenMiddleware).forRoutes('data-api');
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }

@@ -18,6 +18,11 @@ export class User {
   phoneNumber: string;
   @Prop({ default: false, required: false })
   isStudent: boolean;
+  @Prop({
+    required: true,
+    default: [],
+  })
+  roles: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

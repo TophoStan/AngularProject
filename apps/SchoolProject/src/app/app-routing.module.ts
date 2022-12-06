@@ -9,6 +9,8 @@ import { UserAddEditComponent } from './pages/user/user-add-edit/user-add-edit.c
 import { UserPageComponent } from './pages/user/user-page.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
+import { BookListComponent } from './pages/book/book-list/book-list.component';
+import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -16,7 +18,8 @@ const routes: Routes = [
   { path: 'user', component: UserPageComponent },
   { path: 'user/new', pathMatch: 'full', component: UserAddEditComponent },
   { path: 'user/:id/edit', pathMatch: 'full', component: UserAddEditComponent },
-  { path: 'book', component: BookPageComponent },
+  { path: 'booklist', pathMatch: 'full', component: BooklistoverviewComponent },
+  { path: 'book', pathMatch: 'full', component: BookPageComponent },
   {
     path: 'book/:id/detail',
     pathMatch: 'full',

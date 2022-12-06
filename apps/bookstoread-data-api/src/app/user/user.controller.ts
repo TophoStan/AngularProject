@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Put,
+} from '@nestjs/common';
 
 import { UserService } from './user.service';
 import { User as UserModel } from './user.schema';
@@ -17,7 +25,7 @@ export class UserController {
 
   @Get('self')
   async getSelf(@InjectToken() token: Token): Promise<UserModel> {
-    const result = await this.userService.getOneByMongo(token.id);
+    const result = await this.userService.getOneByUUID(token.id);
     console.log(result);
 
     return result;
@@ -25,16 +33,23 @@ export class UserController {
   @Put(':id')
   async updateOne(
     @Param('id') id: string,
-    @Body() updatedUser: UserModel
+    @Body() updatedUser: UserModel,
+    @InjectToken() token: Token
   ): Promise<UserModel> {
-    console.log('UpdateUser');
-
-    return await this.userService.updateOne(updatedUser);
+    const user = await this.userService.getOneByUUID(token.id);
+    if (user.roles.includes('admin')) {
+      return await this.userService.updateOne(updatedUser);
+    } else {
+      throw new HttpException(
+        'Not allowed to do this action as a user',
+        HttpStatus.FORBIDDEN
+      );
+    }
   }
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<UserModel> {
     console.log(id);
 
-    return await this.userService.getOneByMongo(id);
+    return await this.userService.getOneByUUID(id);
   }
 }

@@ -20,6 +20,7 @@ import { BookDetailComponent } from './pages/book/book-detail/book-detail.compon
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { JwtModule } from '@nestjs/jwt';
+import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
 // import { IUser } from '@schoolproject/data';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { JwtModule } from '@nestjs/jwt';
     BookDetailComponent,
     RegisterComponent,
     LoginComponent,
+    BooklistoverviewComponent,
   ],
   imports: [
     BrowserModule,

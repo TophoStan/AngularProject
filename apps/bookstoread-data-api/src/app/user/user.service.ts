@@ -33,18 +33,28 @@ export class UserService {
     const users = await this.userModel.aggregate(pipelineUser);
     return users[0];
   }
-  async getOneByMongo(userMongoId: string): Promise<UserModel> {
+  async getOneByUUID(userMongoId: string): Promise<UserModel> {
     const pipelineUser = [{ $match: { id: userMongoId } }];
     const users = await this.userModel.aggregate(pipelineUser);
 
     return users[0];
   }
   async updateOne(updatedUser: UserModel): Promise<UserModel> {
-    const pipelineUser = [{ $match: { id: updatedUser.id } }];
-    let user = await this.userModel.aggregate(pipelineUser)[0];
-    user = updatedUser;
-    delete user.id;
-    await this.userModel.updateOne(user);
-    return user;
+    const user = await this.userModel.find({ id: updatedUser.id });
+    const output = await this.userModel.updateOne({ id: user[0].id }, [
+      {
+        $set: {
+          firstName: updatedUser.firstName,
+          lastName: updatedUser.lastName,
+          phoneNumber: updatedUser.phoneNumber,
+          isStudent: updatedUser.isStudent,
+          roles: updatedUser.roles,
+        },
+      },
+    ]);
+    return user[0];
   }
+  // async deleteOne(){
+
+  // }
 }

@@ -26,12 +26,14 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.authService.loginUser(this.user).subscribe((token: Token) => {
       if (token) {
-        console.log(token);
-        localStorage.setItem('token', JSON.stringify(token));
+        console.log('Login');
+        localStorage.setItem('token', JSON.stringify(token) || '');
         this.userService.getSelf().subscribe((user) => {
-          localStorage.setItem('user', JSON.stringify(user) || '');
           console.log(user);
+          localStorage.setItem('token', JSON.stringify(token) || '');
+          localStorage.setItem('user', JSON.stringify(user) || '');
         });
+        this.authService.loginStatus = true;
         this.router.navigate(['']);
       }
     });

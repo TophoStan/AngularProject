@@ -5,6 +5,7 @@ export interface IUser {
   emailAddress: string;
   phoneNumber: string;
   isStudent: boolean;
+  roles: string[];
 }
 export interface UserInfo extends UserIdentity {
   emailAddress: string;
