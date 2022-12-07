@@ -25,6 +25,8 @@ export class UserController {
 
   @Get('self')
   async getSelf(@InjectToken() token: Token): Promise<UserModel> {
+    console.log();
+
     const result = await this.userService.getOneByUUID(token.id);
     console.log(result);
 

@@ -39,7 +39,7 @@ export class BookAddEditComponent implements OnInit {
         //Create
       } else {
         this.book = {
-          id: 0,
+          id: '0',
           title: '',
           summary: '',
           rating: 0,

@@ -24,13 +24,13 @@ export class BookCardComponent implements OnInit {
   faScroll = faScroll;
   faCheck = faCheck;
   faX = faTimes;
-
+  isAdmin = false;
   constructor(private bookService: BookService) {}
 
   deleteBook() {
     console.log('deletes');
 
-    this.bookService.deleteBookById(this.book!.id);
+    // this.bookService.deleteBookById(this.book!.id);
   }
 
   ngOnInit(): void {}

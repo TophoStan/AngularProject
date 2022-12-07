@@ -37,7 +37,6 @@ export class AuthService {
   async verifyToken(token: string): Promise<string | JwtPayload> {
     return new Promise((resolve, reject) => {
       verify(token, process.env['JWT_SECRET'] || '', (err, payload: any) => {
-        if (err) reject(err);
         if (err) {
           reject(err);
         } else {

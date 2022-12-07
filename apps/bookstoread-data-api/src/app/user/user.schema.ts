@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 import { v4 as uuid } from 'uuid';
+import { Booklist, bookListSchema } from '../booklist/booklist.schema';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -23,6 +24,12 @@ export class User {
     default: [],
   })
   roles: string[];
+  @Prop({
+    required: true,
+    default: [],
+    type: [bookListSchema],
+  })
+  bookLists: Booklist[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

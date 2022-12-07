@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { BookListComponent } from './pages/book/book-list/book-list.component';
 import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
+import { BooklistAddComponent } from './pages/booklistoverview/booklist-add/booklist-add.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -19,6 +20,17 @@ const routes: Routes = [
   { path: 'user/new', pathMatch: 'full', component: UserAddEditComponent },
   { path: 'user/:id/edit', pathMatch: 'full', component: UserAddEditComponent },
   { path: 'booklist', pathMatch: 'full', component: BooklistoverviewComponent },
+  { path: 'booklist/new', pathMatch: 'full', component: BooklistAddComponent },
+  {
+    path: 'booklist/:id',
+    pathMatch: 'full',
+    component: BookListComponent,
+  },
+  {
+    path: 'booklist/new',
+    pathMatch: 'full',
+    component: BooklistoverviewComponent,
+  },
   { path: 'book', pathMatch: 'full', component: BookPageComponent },
   {
     path: 'book/:id/detail',

@@ -1,0 +1,17 @@
+.imgplace {
+    width: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.card:hover {
+    cursor: pointer;
+    transition: 0.3s; 
+    transform: translateY(-10px);
+
+    box-shadow: #a5dbdb 5px 10px ;
+    
+  }
+.card {
+transition: 0.3s; 
+
+}

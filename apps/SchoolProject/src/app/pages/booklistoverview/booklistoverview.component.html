@@ -1,1 +1,40 @@
-<p>booklistoverview works!</p>
+<div class="container">
+  <div class="row">
+    <div>
+      <h2 *ngIf="">{{ 'User' }} here are your booklists</h2>
+    </div>
+    <div class="row">
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-success" routerLink="new">
+          Create a new reading list
+        </button>
+      </div>
+    </div>
+    <div class="row row-cols-4">
+      <div *ngFor="let booklist of booklists" class="col">
+        <div class="card" routerLink="{{ booklist.id }}">
+          <h3>
+            <strong routerLink="{{ booklist.id }}">{{ booklist.name }}</strong>
+          </h3>
+          <div class="d-flex justify-content-center">
+            <div class="imgplace">
+              <img
+                src="{{
+                  booklist.books[0]
+                    ? booklist.books[0].imageUrl
+                    : 'https://www.smartphonekliniek.com/wp-content/uploads/2019/07/no-image.jpg'
+                }}"
+                class="w-100"
+                alt=""
+              />
+            </div>
+          </div>
+          <p class="fst-italic">{{ booklist.description }}</p>
+          <p>
+            <fa-icon [icon]="bookIcon"></fa-icon>{{ booklist.books.length }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
