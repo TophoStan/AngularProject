@@ -99,4 +99,31 @@ export class UserService {
   clearUsers() {
     this.users.splice(0);
   }
+  addBookToBookListUser(booklistId: string, bookId: string) {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.put<IUser>(
+      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      { booklistId, bookId },
+      {
+        headers: headers,
+      }
+    );
+  }
+  removeBookFromBookListUser(booklistId: string, bookId: string) {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.delete<IUser>(
+      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      { body: { booklistId, bookId }, headers: headers }
+    );
+  }
 }

@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { BookListComponent } from './pages/book/book-list/book-list.component';
 import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
 import { BooklistAddComponent } from './pages/booklistoverview/booklist-add/booklist-add.component';
+import { BooklistDetailComponent } from './pages/booklistoverview/booklist-detail/booklist-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -24,14 +25,19 @@ const routes: Routes = [
   {
     path: 'booklist/:id',
     pathMatch: 'full',
-    component: BookListComponent,
+    component: BooklistDetailComponent,
   },
   {
     path: 'booklist/new',
     pathMatch: 'full',
     component: BooklistoverviewComponent,
   },
-  { path: 'book', pathMatch: 'full', component: BookPageComponent },
+  {
+    path: 'booklist/:id/edit',
+    pathMatch: 'full',
+    component: BooklistAddComponent,
+  },
+  { path: 'book', pathMatch: 'full', component: BookListComponent },
   {
     path: 'book/:id/detail',
     pathMatch: 'full',

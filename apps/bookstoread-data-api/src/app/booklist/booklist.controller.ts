@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Token } from '../auth/token.decorator';
 import { InjectToken } from '../auth/token.decorator';
 import { Booklist } from './booklist.schema';
@@ -26,5 +26,13 @@ export class BookListController {
     @InjectToken() token: Token
   ): Promise<Booklist> {
     return this.BookListService.getOneById(id['id'], token);
+  }
+  @Put(':id')
+  async updateBookList(
+    @Param() id: string,
+    @InjectToken() token: Token,
+    @Body() bookList: Booklist
+  ): Promise<Booklist> {
+    return this.BookListService.updateOne(id['id'], token, bookList);
   }
 }

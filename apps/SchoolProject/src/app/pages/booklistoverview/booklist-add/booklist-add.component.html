@@ -25,7 +25,12 @@
           #description="ngModel"
         ></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <button *ngIf="!booklistExists" type="submit" class="btn btn-primary">
+        Create
+      </button>
+      <button *ngIf="booklistExists" type="submit" class="btn btn-warning">
+        Edit
+      </button>
     </form>
   </div>
 </div>

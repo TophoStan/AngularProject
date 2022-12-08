@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IBookList } from '@schoolproject/data';
 import { BooklistService } from '../booklist.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-booklist-add',
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./booklist-add.component.css'],
 })
 export class BooklistAddComponent implements OnInit {
+  booklistId: string | null = null;
+  booklistExists: boolean = false;
   booklist: IBookList = {
     id: '0',
     name: '',
@@ -16,6 +18,7 @@ export class BooklistAddComponent implements OnInit {
     books: [],
   };
   constructor(
+    private route: ActivatedRoute,
     private booklistservice: BooklistService,
     private router: Router
   ) {}
@@ -23,11 +26,29 @@ export class BooklistAddComponent implements OnInit {
   onSubmit(): void {
     console.log('Creating booklist');
 
-    this.booklistservice.addBookList(this.booklist).subscribe((result) => {
-      console.log(result);
-      this.router.navigate(['booklist']);
-    });
+    if (this.booklistExists) {
+      this.booklistservice.updateBookList(this.booklist).subscribe((result) => {
+        console.log('updated booklist');
+      });
+    } else {
+      this.booklistservice.addBookList(this.booklist).subscribe((result) => {
+        console.log(result);
+        this.router.navigate(['booklist']);
+      });
+    }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.booklistId = params.get('id');
+      if (this.booklistId) {
+        this.booklistExists = true;
+        this.booklistservice
+          .getBookListById(this.booklistId)
+          .subscribe((result) => {
+            this.booklist = result;
+          });
+      }
+    });
+  }
 }

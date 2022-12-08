@@ -9,6 +9,8 @@ import { BookListController } from './booklist/booklist.controller';
 import { BookListService } from './booklist/booklist.service';
 import { Book, bookSchema } from './book/book.schema';
 import { Booklist, bookListSchema } from './booklist/booklist.schema';
+import { BookController } from './book/book.controller';
+import { BookService } from './book/book.service';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Booklist, bookListSchema } from './booklist/booklist.schema';
       { name: Booklist.name, schema: bookListSchema },
     ]),
   ],
-  controllers: [UserController, BookListController],
-  providers: [UserService, BookListService],
+  controllers: [UserController, BookListController, BookController],
+  providers: [UserService, BookListService, BookService],
 })
 export class DataModule {}

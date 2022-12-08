@@ -58,4 +58,19 @@ export class BooklistService {
       }
     );
   }
+  updateBookList(bookList: IBookList): Observable<IBookList> {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.put<IBookList>(
+      `http://localhost:3333/api/data-api/booklist/${bookList.id}`,
+      bookList,
+      {
+        headers: headers,
+      }
+    );
+  }
 }

@@ -1,3 +1,5 @@
+import { IBookList } from './booklist.model';
+
 export interface IUser {
   id: number;
   firstName: string;
@@ -6,6 +8,7 @@ export interface IUser {
   phoneNumber: string;
   isStudent: boolean;
   roles: string[];
+  bookLists?: IBookList[];
 }
 export interface UserInfo extends UserIdentity {
   emailAddress: string;

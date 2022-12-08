@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/auth/login/login.component';
 import { JwtModule } from '@nestjs/jwt';
 import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
 import { BooklistAddComponent } from './pages/booklistoverview/booklist-add/booklist-add.component';
+import { BooklistDetailComponent } from './pages/booklistoverview/booklist-detail/booklist-detail.component';
 // import { IUser } from '@schoolproject/data';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BooklistAddComponent } from './pages/booklistoverview/booklist-add/book
     LoginComponent,
     BooklistoverviewComponent,
     BooklistAddComponent,
+    BooklistDetailComponent,
   ],
   imports: [
     BrowserModule,

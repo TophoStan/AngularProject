@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
@@ -47,6 +48,50 @@ export class UserController {
         HttpStatus.FORBIDDEN
       );
     }
+  }
+  @Put(':id/booklist')
+  async updateBookListOfUser(
+    @Param('id') id: string,
+    @Body() body: any,
+    @InjectToken() token: Token
+  ): Promise<UserModel> {
+    const user = await this.userService.getOneByUUID(token.id);
+    if (user) {
+      if (user.id == id) {
+        return await this.userService.AddBookToBooklistOfUser(
+          user,
+          body,
+          token
+        );
+      }
+      throw new HttpException(
+        'Not allowed to edit something that is not your own',
+        HttpStatus.FORBIDDEN
+      );
+    }
+    throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
+  }
+  @Delete(':id/booklist')
+  async deletteBookBookListOfUser(
+    @Param('id') id: string,
+    @Body() body: any,
+    @InjectToken() token: Token
+  ): Promise<UserModel> {
+    const user = await this.userService.getOneByUUID(token.id);
+    if (user) {
+      if (user.id == id) {
+        return await this.userService.removeBookFromBookListOfUser(
+          user,
+          body,
+          token
+        );
+      }
+      throw new HttpException(
+        'Not allowed to edit something that is not your own',
+        HttpStatus.FORBIDDEN
+      );
+    }
+    throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
   }
   @Get(':id')
   async getOne(@Param('id') id: string): Promise<UserModel> {

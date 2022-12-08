@@ -29,14 +29,14 @@ export class BookAddEditComponent implements OnInit {
       this.bookId = params.get('id');
       //Edit
       if (this.bookId) {
-        this.bookExists = true;
-        this.staticBook = this.bookService.getBookById(Number(this.bookId));
-        this.book = {
-          ...JSON.parse(
-            JSON.stringify(this.bookService.getBookById(Number(this.bookId)))
-          ),
-        };
-        //Create
+        // this.bookExists = true;
+        // this.staticBook = this.bookService.getBookById(this.bookId);
+        // this.book = {
+        //   ...JSON.parse(
+        //     JSON.stringify(this.bookService.getBookById(Number(this.bookId)))
+        //   ),
+        // };
+        // //Create
       } else {
         this.book = {
           id: '0',

@@ -5,7 +5,11 @@ import { InjectModel } from '@nestjs/mongoose';
 
 import { Token } from '../auth/token.decorator';
 import { User as UserModel, UserDocument } from '../user/user.schema';
-import { BooklistDocument, Booklist as BooklistModel } from './booklist.schema';
+import {
+  BooklistDocument,
+  Booklist as BooklistModel,
+  Booklist,
+} from './booklist.schema';
 import { BookDocument, Book as BookModel } from '../book/book.schema';
 import { IBookList } from '@schoolproject/data';
 
@@ -18,6 +22,7 @@ export class BookListService {
   ) {}
 
   async getAll(token: Token): Promise<BooklistModel[]> {
+    console.log('GetAll');
     const user = await this.userModel.aggregate([{ $match: { id: token.id } }]);
     const actualUser = await this.userModel
       .findById(user)
@@ -72,5 +77,32 @@ export class BookListService {
       );
     }
     return newbookList;
+  }
+  async updateOne(
+    id: any,
+    token: Token,
+    updatedBookList: Booklist
+  ): Promise<BooklistModel> {
+    const user = await this.userModel.aggregate([{ $match: { id: token.id } }]);
+    const actualUser = await this.userModel.findById(user);
+    const result = await this.userModel.updateMany(
+      { _id: actualUser?._id, 'bookLists.id': updatedBookList.id },
+      {
+        $set: {
+          'bookLists.$.name': updatedBookList.name,
+          'bookLists.$.description': updatedBookList.description,
+        },
+      }
+    );
+
+    try {
+      actualUser?.save();
+    } catch (error) {
+      throw new HttpException(
+        'Unable to create a booklist',
+        HttpStatus.BAD_REQUEST
+      );
+    }
+    return updatedBookList;
   }
 }

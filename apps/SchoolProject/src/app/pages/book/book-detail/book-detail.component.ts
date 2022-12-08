@@ -5,7 +5,7 @@ import {
   Route,
   Router,
 } from '@angular/router';
-import { IBook } from '@schoolproject/data';
+import { IBook, IUser } from '@schoolproject/data';
 import { BookService } from '../book.service';
 import {
   faCheck,
@@ -17,6 +17,7 @@ import {
   faTrash,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -24,31 +25,41 @@ import {
   styleUrls: ['./book-detail.component.css'],
 })
 export class BookDetailComponent implements OnInit {
-  book: IBook | undefined;
+  book: IBook | undefined = {
+    id: '0',
+    title: '',
+    summary: '',
+    rating: 0,
+    price: 0,
+  };
   staticBook: IBook | undefined;
+  user: IUser | null = null;
   bookId: string | null = null;
   bookExists: boolean = false;
   faCheck = faCheck;
   faX = faTimes;
+  selectedBookList: any | null = 'standard';
 
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user') || '');
     this.route.paramMap.subscribe((params) => {
       this.bookId = params.get('id');
       //Edit
       if (this.bookId) {
         this.bookExists = true;
-        this.staticBook = this.bookService.getBookById(Number(this.bookId));
-        this.book = {
-          ...JSON.parse(
-            JSON.stringify(this.bookService.getBookById(Number(this.bookId)))
-          ),
-        };
+        this.bookService.getBookById(this.bookId).subscribe((result) => {
+          console.log(result);
+
+          this.book = result;
+          this.staticBook = result;
+        });
         //Create
       } else {
         this.book = {
@@ -60,5 +71,15 @@ export class BookDetailComponent implements OnInit {
         };
       }
     });
+  }
+  onSubmit() {
+    console.log(this.selectedBookList);
+    if (!(this.selectedBookList == 'standard')) {
+      this.userService
+        .addBookToBookListUser(this.selectedBookList, this.bookId!)
+        .subscribe((result) => {
+          console.log(result);
+        });
+    }
   }
 }
