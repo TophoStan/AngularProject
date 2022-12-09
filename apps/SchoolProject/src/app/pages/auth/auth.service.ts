@@ -7,6 +7,7 @@ import {
   Token,
 } from '@schoolproject/data';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
     console.log('Register called');
 
     return this.httpClient.post<User>(
-      'http://localhost:3333/api/auth-api/register',
+      `${environment.API_URL}auth-api/register`,
       userInfo,
       { headers: headers }
     );
@@ -37,7 +38,7 @@ export class AuthService {
     console.log('Login called');
 
     return this.httpClient.post<Token>(
-      'http://localhost:3333/api/auth-api/login',
+      `${environment.API_URL}auth-api/login`,
       userLogin,
       { headers: headers }
     );
@@ -49,7 +50,6 @@ export class AuthService {
     const logged = this.loginStatus;
 
     if (logged) {
-      
       if (localStorage.getItem('user')) {
         const user = JSON.parse(localStorage.getItem('user') || '');
         if (user.roles.includes('admin')) {

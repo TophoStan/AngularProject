@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser } from '@schoolproject/data';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -24,12 +25,9 @@ export class UserService {
       'Access-Control-Allow-Origin': '*',
       Authorization: `${token}`,
     });
-    return this.httpClient.get<IUser[]>(
-      'http://localhost:3333/api/data-api/user',
-      {
-        headers: headers,
-      }
-    );
+    return this.httpClient.get<IUser[]>(`${environment.API_URL}data-api/user`, {
+      headers: headers,
+    });
   }
   getUserByIdAsObservable(id: string): Observable<IUser> {
     console.log('getUserByIdAsObservable aangeroepen');
@@ -40,7 +38,7 @@ export class UserService {
       Authorization: `${token}`,
     });
     return this.httpClient.get<IUser>(
-      `http://localhost:3333/api/data-api/user/${id}`,
+      `${environment.API_URL}data-api/user/${id}`,
       {
         headers: headers,
       }
@@ -55,7 +53,7 @@ export class UserService {
       Authorization: `${token}`,
     });
     return this.httpClient.get<IUser>(
-      `http://localhost:3333/api/data-api/user/self`,
+      `${environment.API_URL}data-api/user/self`,
       {
         headers: headers,
       }
@@ -87,7 +85,7 @@ export class UserService {
       Authorization: `${token}`,
     });
     return this.httpClient.put<IUser>(
-      `http://localhost:3333/api/data-api/user/${updatedUser.id}`,
+      `${environment.API_URL}data-api/user/${updatedUser.id}`,
       updatedUser,
       {
         headers: headers,
@@ -110,7 +108,7 @@ export class UserService {
       Authorization: `${token}`,
     });
     return this.httpClient.put<IUser>(
-      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      `${environment.API_URL}data-api/user/${user.id}/booklist`,
       { booklistId, bookId },
       {
         headers: headers,
@@ -125,7 +123,7 @@ export class UserService {
       Authorization: `${token}`,
     });
     return this.httpClient.delete<IUser>(
-      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      `${environment.API_URL}data-api/user/${user.id}/booklist`,
       { body: { booklistId, bookId }, headers: headers }
     );
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { IBook } from '@schoolproject/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +20,9 @@ export class BookService {
       'Access-Control-Allow-Origin': '*',
       Authorization: `${token}`,
     });
-    return this.httpClient.get<IBook[]>(
-      'http://localhost:3333/api/data-api/book',
-      {
-        headers: headers,
-      }
-    );
+    return this.httpClient.get<IBook[]>(`${environment.API_URL}data-api/book`, {
+      headers: headers,
+    });
   }
 
   deleteBookById(id: number) {}
@@ -37,7 +35,7 @@ export class BookService {
       Authorization: `${token}`,
     });
     return this.httpClient.get<IBook>(
-      `http://localhost:3333/api/data-api/book/${id}`,
+      `${environment.API_URL}data-api/book/${id}`,
       {
         headers: headers,
       }
