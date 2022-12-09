@@ -3,7 +3,7 @@ import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 import { Id } from '@schoolproject/data';
 
 export interface Token {
-  username: Id;
+  firstName: Id;
   id: string;
 }
 

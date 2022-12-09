@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, HydratedDocument, Schema as MongooseSchema } from 'mongoose';
+import { Document, HydratedDocument } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import { Booklist, bookListSchema } from '../booklist/booklist.schema';
 

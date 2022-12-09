@@ -15,6 +15,8 @@ export class Book {
   id: string;
   @Prop({ default: 'Title', required: true, unique: false })
   title: string;
+  @Prop({ default: '', required: false, unique: false })
+  imageUrl: string;
   @Prop({ default: 'bla bla bla bla', required: true, unique: false })
   summary: string;
   @Prop({ default: '10', required: true, unique: false })

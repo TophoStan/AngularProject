@@ -29,7 +29,10 @@
   </p>
 </div>
 <div class="row m-0">
-  <button class="btn btn-sm btn-primary col" routerLink="{{ book!.id }}/detail">
+  <button
+    class="btn btn-sm btn-primary col"
+    routerLink="/book/{{ book!.id }}/detail"
+  >
     <fa-icon [icon]="faScroll"></fa-icon> Details
   </button>
   <button

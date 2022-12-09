@@ -32,7 +32,11 @@ require('dotenv');
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(TokenMiddleware).forRoutes('data-api');
+    consumer
+      .apply(TokenMiddleware)
+      .exclude({ path: 'auth-api', method: RequestMethod.ALL })
+      .exclude({ path: 'api/data-api/user', method: RequestMethod.GET })
+      .forRoutes('data-api');
     consumer
       .apply(LoggerMiddleware)
       .forRoutes({ path: '*', method: RequestMethod.ALL });

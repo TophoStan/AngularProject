@@ -38,12 +38,12 @@ const routes: Routes = [
     component: BooklistAddComponent,
   },
   { path: 'book', pathMatch: 'full', component: BookListComponent },
+  { path: 'book/new', pathMatch: 'full', component: BookAddEditComponent },
   {
     path: 'book/:id/detail',
     pathMatch: 'full',
     component: BookDetailComponent,
   },
-  { path: 'book/new', pathMatch: 'full', component: BookAddEditComponent },
   { path: 'book/:id/edit', pathMatch: 'full', component: BookAddEditComponent },
   { path: 'register', pathMatch: 'full', component: RegisterComponent },
   { path: 'login', pathMatch: 'full', component: LoginComponent },

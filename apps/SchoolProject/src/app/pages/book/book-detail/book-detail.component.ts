@@ -48,7 +48,9 @@ export class BookDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user') || '');
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user') || '');
+    }
     this.route.paramMap.subscribe((params) => {
       this.bookId = params.get('id');
       //Edit

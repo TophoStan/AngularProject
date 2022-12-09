@@ -29,6 +29,9 @@ export class BooklistAddComponent implements OnInit {
     if (this.booklistExists) {
       this.booklistservice.updateBookList(this.booklist).subscribe((result) => {
         console.log('updated booklist');
+        console.log(result);
+
+        this.router.navigate([`booklist/${this.booklistId}`]);
       });
     } else {
       this.booklistservice.addBookList(this.booklist).subscribe((result) => {

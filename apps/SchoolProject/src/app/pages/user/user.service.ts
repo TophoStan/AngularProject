@@ -15,7 +15,10 @@ export class UserService {
     console.log('getUsersAsObservable aangeroepen');
     // 'of' is een rxjs operator die een Observable
     // maakt van de gegeven data.
-    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    let token;
+    if (localStorage.getItem('token')) {
+      token = JSON.parse(localStorage.getItem('token') || '').token;
+    }
 
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',

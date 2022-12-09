@@ -32,7 +32,7 @@ describe('Token middelware', () => {
   });
 
   it('should store token in resonse locals', async () => {
-    const token = { username: 'dion', id: 'id123' };
+    const token = { firstName: 'dion', id: 'id123' };
 
     request.header.mockImplementation(() => 'token');
     authService.verifyToken.mockImplementation(() => token);

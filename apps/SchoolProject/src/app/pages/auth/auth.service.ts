@@ -47,10 +47,14 @@ export class AuthService {
   }
   isAdmin(): boolean {
     const logged = this.loginStatus;
+
     if (logged) {
-      const user = JSON.parse(localStorage.getItem('user') || '');
-      if (user.roles.includes('admin')) {
-        return true;
+      
+      if (localStorage.getItem('user')) {
+        const user = JSON.parse(localStorage.getItem('user') || '');
+        if (user.roles.includes('admin')) {
+          return true;
+        }
       }
     }
     return false;

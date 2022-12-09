@@ -7,10 +7,9 @@ export type IdentityDocument = Identity & Document;
 @Schema()
 export class Identity {
   @Prop({
-    required: true,
-    unique: true,
+    unique: false,
   })
-  username: string;
+  firstName: string;
 
   @Prop({ required: true })
   hash: string;
