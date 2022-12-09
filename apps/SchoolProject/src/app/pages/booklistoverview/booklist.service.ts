@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBookList, IUser } from '@schoolproject/data';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class BooklistService {
       Authorization: `${token}`,
     });
     return this.httpClient.get<IBookList[]>(
-      'http://localhost:3333/api/data-api/booklist',
+      `${environment.API_URL}data-api/booklist`,
       {
         headers: headers,
       }
@@ -37,7 +38,7 @@ export class BooklistService {
       Authorization: `${token}`,
     });
     return this.httpClient.get<IBookList>(
-      `http://localhost:3333/api/data-api/booklist/${id}`,
+      `${environment.API_URL}data-api/booklist/${id}`,
       {
         headers: headers,
       }
@@ -51,7 +52,7 @@ export class BooklistService {
       Authorization: `${token}`,
     });
     return this.httpClient.post<IBookList>(
-      `http://localhost:3333/api/data-api/booklist/`,
+      `${environment.API_URL}data-api/booklist/`,
       bookList,
       {
         headers: headers,
@@ -66,7 +67,7 @@ export class BooklistService {
       Authorization: `${token}`,
     });
     return this.httpClient.put<IBookList>(
-      `http://localhost:3333/api/data-api/booklist/${bookList.id}`,
+      `${environment.API_URL}data-api/booklist/${bookList.id}`,
       bookList,
       {
         headers: headers,
