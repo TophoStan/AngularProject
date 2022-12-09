@@ -1,6 +1,16 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">BooksToRead</a>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" routerLink="">Home</a>
+        <a class="nav-link" routerLink="user">User</a>
+        <a class="nav-link" routerLink="booklist">Booklist</a>
+        <a class="nav-link" routerLink="book">Book</a>
+        <a class="nav-link" routerLink="about">About</a>
+      </div>
+    </div>
     <button
       class="navbar-toggler"
       type="button"
@@ -12,13 +22,28 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="">Home</a>
-        <a class="nav-link" routerLink="user">User</a>
-        <a class="nav-link" routerLink="book">Book</a>
-        <a class="nav-link" routerLink="about">About</a>
-      </div>
+    <div class="d-inline float-end">
+      <button
+        *ngIf="!userLoggedIn"
+        class="btn btn-outline-secondary float-end"
+        routerLink="register"
+      >
+        Register
+      </button>
+      <button
+        *ngIf="!userLoggedIn"
+        class="btn btn-primary float-end"
+        routerLink="login"
+      >
+        Login
+      </button>
+      <button
+        *ngIf="userLoggedIn"
+        class="btn btn-primary float-end"
+        (click)="logout()"
+      >
+        Log out
+      </button>
     </div>
   </div>
 </nav>

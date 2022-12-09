@@ -1,59 +1,65 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { IUser } from './user.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IUser } from '@schoolproject/data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  readonly users: IUser[] = [
-    {
-      id: 0,
-      firstName: 'Stijn',
-      lastName: 'Spanjers',
-      emailAdress: 'stijn@icloud.com',
-      phoneNumber: '0612345678',
-      isStudent: true,
-    },
-    {
-      id: 1,
-      firstName: 'Stan',
-      lastName: 'Tophoven',
-      emailAdress: 'saj.tophoven@mail.com',
-      phoneNumber: '0612345678',
-      isStudent: true,
-    },
-    {
-      id: 2,
-      firstName: 'Thomas',
-      lastName: 'Quartel',
-      emailAdress: 'Thomaaas@quartel.com',
-      phoneNumber: '0612345678',
-      isStudent: false,
-    },
-    {
-      id: 3,
-      firstName: 'Rogier',
-      lastName: ' van de Gaag',
-      emailAdress: 'Gaag@mail.com',
-      phoneNumber: '061273765',
-      isStudent: true,
-    },
-    {
-      id: 4,
-      firstName: 'Luuk',
-      lastName: 'Vogel',
-      emailAdress: 'LuukVogel@mail.com',
-      phoneNumber: '2398475',
-      isStudent: false,
-    },
-  ];
+  readonly users: IUser[] = [];
+
+  constructor(private httpClient: HttpClient) {}
 
   getUsersAsObservable(): Observable<IUser[]> {
     console.log('getUsersAsObservable aangeroepen');
     // 'of' is een rxjs operator die een Observable
     // maakt van de gegeven data.
-    return of(this.users);
+    let token;
+    if (localStorage.getItem('token')) {
+      token = JSON.parse(localStorage.getItem('token') || '').token;
+    }
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.get<IUser[]>(
+      'http://localhost:3333/api/data-api/user',
+      {
+        headers: headers,
+      }
+    );
+  }
+  getUserByIdAsObservable(id: string): Observable<IUser> {
+    console.log('getUserByIdAsObservable aangeroepen');
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.get<IUser>(
+      `http://localhost:3333/api/data-api/user/${id}`,
+      {
+        headers: headers,
+      }
+    );
+  }
+  getSelf(): Observable<IUser> {
+    console.log('getself');
+
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.get<IUser>(
+      `http://localhost:3333/api/data-api/user/self`,
+      {
+        headers: headers,
+      }
+    );
   }
 
   getUserById(id: number): IUser {
@@ -74,11 +80,19 @@ export class UserService {
     this.users.push(user);
   }
   updateUser(updatedUser: IUser) {
-    console.log(updatedUser);
-
-    let user = this.users.find((obj) => obj.id == updatedUser.id);
-    let index = this.users.indexOf(user!);
-    this.users[index] = updatedUser;
+    console.log('Updating user.....');
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.put<IUser>(
+      `http://localhost:3333/api/data-api/user/${updatedUser.id}`,
+      updatedUser,
+      {
+        headers: headers,
+      }
+    );
   }
   deleteUser(id: number) {
     let user = this.users.find((obj) => obj.id == id);
@@ -87,5 +101,32 @@ export class UserService {
   }
   clearUsers() {
     this.users.splice(0);
+  }
+  addBookToBookListUser(booklistId: string, bookId: string) {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.put<IUser>(
+      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      { booklistId, bookId },
+      {
+        headers: headers,
+      }
+    );
+  }
+  removeBookFromBookListUser(booklistId: string, bookId: string) {
+    const token = JSON.parse(localStorage.getItem('token') || '').token;
+    const user = JSON.parse(localStorage.getItem('user') || '');
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      Authorization: `${token}`,
+    });
+    return this.httpClient.delete<IUser>(
+      `http://localhost:3333/api/data-api/user/${user.id}/booklist`,
+      { body: { booklistId, bookId }, headers: headers }
+    );
   }
 }

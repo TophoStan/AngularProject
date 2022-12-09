@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "SchoolProject": "apps/SchoolProject"
+    "SchoolProject": "apps/SchoolProject",
+    "bookstoread-data-api": "apps/bookstoread-data-api",
+    "data": "libs/data"
   }
 }

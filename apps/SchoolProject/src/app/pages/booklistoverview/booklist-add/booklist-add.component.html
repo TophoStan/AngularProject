@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <form #booklistaddForm="ngForm" name="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name of readinglist</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="form-control"
+          [(ngModel)]="booklist!.name"
+          required
+          #name="ngModel"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description of readinglist</label>
+        <textarea
+          type="text"
+          name="description"
+          id="description"
+          class="form-control"
+          [(ngModel)]="booklist!.description"
+          required
+          #description="ngModel"
+        ></textarea>
+      </div>
+      <button *ngIf="!booklistExists" type="submit" class="btn btn-primary">
+        Create
+      </button>
+      <button *ngIf="booklistExists" type="submit" class="btn btn-warning">
+        Edit
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './pages/user/user-list/user-list.component';
@@ -17,6 +17,14 @@ import { BookListComponent } from './pages/book/book-list/book-list.component';
 import { BookAddEditComponent } from './pages/book/book-add-edit/book-add-edit.component';
 import { BookCardComponent } from './pages/book/book-list/book-card/book-card.component';
 import { BookDetailComponent } from './pages/book/book-detail/book-detail.component';
+import { RegisterComponent } from './pages/auth/register/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { JwtModule } from '@nestjs/jwt';
+import { BooklistoverviewComponent } from './pages/booklistoverview/booklistoverview.component';
+import { BooklistAddComponent } from './pages/booklistoverview/booklist-add/booklist-add.component';
+import { BooklistDetailComponent } from './pages/booklistoverview/booklist-detail/booklist-detail.component';
+// import { IUser } from '@schoolproject/data';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +40,11 @@ import { BookDetailComponent } from './pages/book/book-detail/book-detail.compon
     BookAddEditComponent,
     BookCardComponent,
     BookDetailComponent,
+    RegisterComponent,
+    LoginComponent,
+    BooklistoverviewComponent,
+    BooklistAddComponent,
+    BooklistDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +52,7 @@ import { BookDetailComponent } from './pages/book/book-detail/book-detail.compon
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

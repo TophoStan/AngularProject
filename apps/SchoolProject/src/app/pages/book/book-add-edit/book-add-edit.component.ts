@@ -5,7 +5,7 @@ import {
   Route,
   Router,
 } from '@angular/router';
-import { IBook } from '../book.model';
+import { IBook } from '@schoolproject/data';
 import { BookService } from '../book.service';
 @Component({
   selector: 'app-book-add-edit',
@@ -29,17 +29,17 @@ export class BookAddEditComponent implements OnInit {
       this.bookId = params.get('id');
       //Edit
       if (this.bookId) {
-        this.bookExists = true;
-        this.staticBook = this.bookService.getBookById(Number(this.bookId));
-        this.book = {
-          ...JSON.parse(
-            JSON.stringify(this.bookService.getBookById(Number(this.bookId)))
-          ),
-        };
-        //Create
+        // this.bookExists = true;
+        // this.staticBook = this.bookService.getBookById(this.bookId);
+        // this.book = {
+        //   ...JSON.parse(
+        //     JSON.stringify(this.bookService.getBookById(Number(this.bookId)))
+        //   ),
+        // };
+        // //Create
       } else {
         this.book = {
-          id: 0,
+          id: '0',
           title: '',
           summary: '',
           rating: 0,

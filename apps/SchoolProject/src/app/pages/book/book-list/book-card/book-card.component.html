@@ -29,13 +29,30 @@
   </p>
 </div>
 <div class="row m-0">
-  <button class="btn btn-sm btn-primary col" routerLink="{{ book!.id }}/detail">
+  <button
+    class="btn btn-sm btn-primary col"
+    routerLink="/book/{{ book!.id }}/detail"
+  >
     <fa-icon [icon]="faScroll"></fa-icon> Details
   </button>
-  <button class="btn btn-sm btn-warning col-2" routerLink="{{ book!.id }}/edit">
+  <button
+    *ngIf="isAdmin"
+    class="btn btn-sm btn-warning col-2"
+    routerLink="book/{{ book!.id }}/edit"
+  >
     <fa-icon [icon]="faPencil"></fa-icon> Edit
   </button>
-  <button class="btn btn-sm btn-danger col-2" (click)="deleteBook()">
-    <fa-icon [icon]="faTrash"></fa-icon> Delete
+  <button
+    type="button"
+    *ngIf="!isAllBooks"
+    class="btn btn-sm btn-danger col-3"
+    (click)="removeBook(); notify.emit()"
+  >
+    <fa-icon [icon]="faTrash"></fa-icon> Remove
   </button>
+  <button
+    *ngIf="isAdmin"
+    class="btn btn-sm btn-danger col-2"
+    (click)="deleteBook()"
+  ></button>
 </div>

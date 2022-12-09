@@ -1,5 +1,28 @@
 <div class="container">
   <div class="row">
+    <div class="col mt-4">
+      <div *ngIf="true">
+        <form (ngSubmit)="onSubmit()" #addForm="ngForm">
+          <button class="d-inline float-end btn btn-success" type="submit">
+            Add to reading list
+          </button>
+          <div class="d-inline float-end">
+            <select
+              class="form-select"
+              [(ngModel)]="selectedBookList"
+              [ngModelOptions]="{ standalone: true }"
+            >
+              <option value="standard">Select a list</option>
+              <option *ngFor="let x of user!.bookLists" value="{{ x.id }}">
+                {{ x!.name }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-2 m-auto">
       <img src="{{ book!.imageUrl }}" alt="" class="w-100" />
     </div>
